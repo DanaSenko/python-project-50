@@ -1,4 +1,4 @@
-name: chek
+name: check
 
 on:
   - push
@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Chekout
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Python 
@@ -20,11 +20,14 @@ jobs:
         run: |
           pip install poetry
           poetry install
-          
-      - name: Run linter and pytest
-        run: |
+
+      - name: Run linter
+        run:
           make lint
-          poetry run pytest
+          
+      - name:
+        run:
+          make pytest
 
       
         
