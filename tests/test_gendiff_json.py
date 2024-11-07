@@ -10,7 +10,5 @@ def read_fixture(file_path):
 def test_gendiff():
     with open("tests/fixtures/expected_diff.txt") as expected_file:
         expected_output = expected_file.read().strip()
-    assert (
-        gendiff("tests/fixtures/file1.json", "tests/fixtures/file2.json")
-        == expected_output
-    )
+    assert gendiff('tests/fixtures/file1.json', 'tests/fixtures/file2.json') == expected_output
+    
