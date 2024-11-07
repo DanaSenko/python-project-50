@@ -1,6 +1,7 @@
 from gendiff.file_parser import read_json_file
 from formats.json_format import to_json
 
+
 def generate_diff(dict1, dict2):
     keys = sorted(set(dict1.keys() | dict2.keys()))
     result = ["{"]
