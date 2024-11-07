@@ -22,6 +22,6 @@ jobs:
           poetry install
           
       - name: Run linter 
-        run: poetry run lint
+        run: make lint
       
         
