@@ -10,3 +10,6 @@ lint:
 clean:
 	rm -rf .venv
 	poetry install
+
+pytest:
+	poetry run pytest
