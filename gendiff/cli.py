@@ -15,5 +15,5 @@ def main():
 
     args = parser.parse_args()
 
-    diff = gendiff(f"data/{args.first_file}", f"data/{args.second_file}")
+    diff = gendiff(f"{args.first_file}", f"{args.second_file}")
     print(diff)
