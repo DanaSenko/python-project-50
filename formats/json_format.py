@@ -1,4 +1,11 @@
 import json
 
-def to_json(data):
-    return json.dumps(data).replace('True', 'true').replace('False', 'false')
+
+def to_json(value):
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    elif value is None:
+        return "null"
+    elif isinstance(value, str):
+        return value  # Возвращаем строку без кавычек
+    return value
