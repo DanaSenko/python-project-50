@@ -7,5 +7,5 @@ def to_json(value):
     elif value is None:
         return "null"
     elif isinstance(value, str):
-        return value  # Возвращаем строку без кавычек
+        return value
     return value

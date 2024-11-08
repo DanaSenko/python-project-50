@@ -1,9 +1,9 @@
-from gendiff.file_parser import read_json_file
+from gendiff.file_parser import parse_file
 from formats.json_format import to_json
 
 
 def generate_diff(dict1, dict2):
-    keys = sorted(set(dict1.keys() | dict2.keys()))
+    keys = sorted(set(dict1.keys()) | set(dict2.keys()))
     result = ["{"]
 
     for key in keys:
@@ -25,8 +25,8 @@ def generate_diff(dict1, dict2):
 
 
 def gendiff(filepath1, filepath2):
-    dict1 = read_json_file(filepath1)
-    dict2 = read_json_file(filepath2)
+    dict1 = parse_file(filepath1)
+    dict2 = parse_file(filepath2)
     diff = generate_diff(dict1, dict2)
 
     return diff
