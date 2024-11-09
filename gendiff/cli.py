@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-from gendiff.generate_diff import gendiff
+from gendiff.gendiff import gendiff
 
 
 def main():
@@ -15,5 +15,5 @@ def main():
 
     args = parser.parse_args()
 
-    diff = gendiff(f"{args.first_file}", f"{args.second_file}")
+    diff = gendiff(f"{args.first_file}", f"{args.second_file}", format_name='stylish')
     print(diff)
