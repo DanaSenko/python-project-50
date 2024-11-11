@@ -29,5 +29,24 @@ jobs:
         run:
           make pytest
 
-      
-        
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Install CodeClimate CLI
+        run: |
+          curl -L https://github.com/codeclimate/test-reporter/releases/download/v0.10.2/codeclimate-test-reporter-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+
+      - name: Run tests and generate coverage
+        run: ./gradlew test jacocoTestReport
+
+      - name: Upload coverage to Code Climate
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: |
+          ./cc-test-reporter format-coverage -t jacoco -o build/reports/jacoco/report.xml
+          ./cc-test-reporter upload-coverage
