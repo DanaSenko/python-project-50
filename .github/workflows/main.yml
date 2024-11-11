@@ -35,7 +35,7 @@ jobs:
       - name: Run Test and Upload Coverage
         run: |
           cc-test-reporter before-build
-          make pytest
-          cc-test-reporter after-build --exit-code $?
+          pytest --cov=gendiff --cov-report=lcov > coverage.lcov
+          cc-test-reporter after-build --exit-code $? --coverage-input-type lcov
         env:
             CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
