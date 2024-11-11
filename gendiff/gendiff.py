@@ -1,6 +1,6 @@
 from gendiff.file_parser import parse_file
 from gendiff.build_diff import build_diff
-from formats.stylish import stylish
+from formats.stylish import stylish, plain
 
 
 def gendiff(filepath1, filepath2, format_name="stylish"):
@@ -9,4 +9,6 @@ def gendiff(filepath1, filepath2, format_name="stylish"):
     diff = build_diff(dict1, dict2)
     if format_name == "stylish":
         return stylish(diff)
+    elif format_name == "plain":
+        return plain(diff)
     raise ValueError
