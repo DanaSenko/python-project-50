@@ -1,6 +1,7 @@
 from gendiff.file_parser import parse_file
 from gendiff.build_diff import build_diff
-from formats.stylish import stylish, plain
+from formats.stylish import stylish
+from formats.plain import plain
 
 
 def gendiff(filepath1, filepath2, format_name="stylish"):
