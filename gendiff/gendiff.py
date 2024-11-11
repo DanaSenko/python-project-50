@@ -2,6 +2,7 @@ from gendiff.file_parser import parse_file
 from gendiff.build_diff import build_diff
 from formats.stylish import stylish
 from formats.plain import plain
+from formats.json import json_format
 
 
 def gendiff(filepath1, filepath2, format_name="stylish"):
@@ -12,4 +13,6 @@ def gendiff(filepath1, filepath2, format_name="stylish"):
         return stylish(diff)
     elif format_name == "plain":
         return plain(diff)
+    elif format_name == "json":
+        return json_format(diff)
     raise ValueError
