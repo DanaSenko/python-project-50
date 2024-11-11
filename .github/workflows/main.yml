@@ -28,3 +28,14 @@ jobs:
       - name:
         run:
           make pytest
+
+      - name: Setup Code Climate
+        uses: remarkablemark/setup-codeclimate@v2
+  
+      - name: Run Test and Upload Coverage
+        run: |
+          cc-test-reporter before-build
+          make pytest
+          cc-test-reporter after-build --exit-code $?
+        env:
+            CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}

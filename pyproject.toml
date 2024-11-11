@@ -17,6 +17,8 @@ pyyml = "^0.0.2"
 flake8 = "^7.1.1"
 ruff = "^0.7.2"
 pytest = "^8.3.3"
+codeclimate-test-reporter = "^0.2.3"
+pytest-cov = "^6.0.0"
 
 
 [build-system]
