@@ -180,6 +180,20 @@ files = [
 ]
 
 [[package]]
+name = "pyyml"
+version = "0.0.2"
+description = "Use python in yaml"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyyml-0.0.2-py2.py3-none-any.whl", hash = "sha256:17acc886bb8d58197a745003eae477b18b343ebaa0a304527c5a5dc5770a2b74"},
+    {file = "pyyml-0.0.2.tar.gz", hash = "sha256:f005c753eb36a405321eb653d803861c8570c347f89b35a7c9c21edef5248f5f"},
+]
+
+[package.dependencies]
+pyyaml = ">=3.13"
+
+[[package]]
 name = "ruff"
 version = "0.7.2"
 description = "An extremely fast Python linter and code formatter, written in Rust."
@@ -209,4 +223,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "b659ce73cf7cc5a49ef125ef8850d76de2409c772ad2cb3dce1db05aed1158cd"
+content-hash = "9d139d77853848cb2fd3fe3ebee36449096deb6aa17e0dabdd1ead9a6abd1e47"
