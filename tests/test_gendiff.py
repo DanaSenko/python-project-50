@@ -19,6 +19,6 @@ from tests.fixtures.read_fixtures import read_expected_output
         ("tests/fixtures/file1.yaml", "tests/fixtures/file2.yaml", "tests/fixtures/expected_json_output.txt", "json"),
     ]
 )
-def test_gendiff(file1, file2, expected_output_file, format_name, read_expected_output):
+def test_gendiff(file1, file2, expected_output_file, format_name):
     expected_output = read_expected_output(expected_output_file)
     assert gendiff(file1, file2, format_name=format_name) == expected_output
