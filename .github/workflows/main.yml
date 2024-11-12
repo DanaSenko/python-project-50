@@ -32,10 +32,15 @@ jobs:
       - name: Setup Code Climate
         uses: remarkablemark/setup-codeclimate@v2
   
-      - name: Run Test and Upload Coverage
+      - name: Download Code Climate test reporter
         run: |
-          cc-test-reporter before-build
-          make pytest --cov=gendiff --cov-report=lcov > coverage.lcov
-          cc-test-reporter after-build --exit-code $? --coverage-input-type lcov
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+      
+      - name: Run Tests and Upload Coverage
+        run: |
+          ./cc-test-reporter before-build
+          pytest --cov=gendiff --cov-report=xml
+          ./cc-test-reporter after-build --exit-code $? --coverage-input-type xml
         env:
-            CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
