@@ -41,7 +41,7 @@ jobs:
       - name: Run Tests and Upload Coverage
         run: |
           ./cc-test-reporter before-build
-          poetry run pytest --cov=gendiff --cov-report=coverage.py
-          ./cc-test-reporter after-build --exit-code $? --coverage-input-type coverage.py
+          poetry run pytest --cov=gendiff --cov-report=lcov
+          ./cc-test-reporter after-build --exit-code $? --coverage-input-type lcov
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
