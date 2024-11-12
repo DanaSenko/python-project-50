@@ -42,6 +42,6 @@ jobs:
         run: |
           ./cc-test-reporter before-build
           poetry run pytest --cov=gendiff --cov-report=lcov
-          ./cc-test-reporter after-build --exit-code $? --coverage-input-type lcov
+          ./cc-test-reporter after-build --exit-code $? --coverage-input-type lcov  --file coverage.lcov
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
