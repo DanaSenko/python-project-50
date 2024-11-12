@@ -5,15 +5,15 @@ def plain(diff, path=""):
         status = change["status"]
         if status == "added":
             lines.append(
-                f"Property '{current_path}' was added with value:"
+                f"Property '{current_path}' was added with value: "
                 f"{format_value(change['value'])}"
             )
         elif status == "removed":
             lines.append(f"Property '{current_path}' was removed")
         elif status == "changed":
             lines.append(
-                f"Property '{current_path}' was updated."
-                f"From {format_value(change['old_value'])} to"
+                f"Property '{current_path}' was updated. "
+                f"From {format_value(change['old_value'])} to "
                 f"{format_value(change['new_value'])}"
             )
         elif status == "nested":
