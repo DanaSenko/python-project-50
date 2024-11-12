@@ -21,27 +21,14 @@ jobs:
           pip install poetry
           poetry install
 
-
       - name: Run linter
         run:
           make lint
-          
-      - name:
-        run:
-          make pytest
-
-      - name: Setup Code Climate
-        uses: remarkablemark/setup-codeclimate@v2
   
       - name: Download Code Climate test reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-      
-      - name: Run Tests and Upload Coverage
-        run: |
-          ./cc-test-reporter before-build
-          poetry run pytest --cov=gendiff --cov-report=lcov
-          cc-test-reporter after-build coverage.lcov -t lcov -r "$CC_TEST_REPORTER_ID"
+        uses: paambaati/codeclimate-action@v3.2.0
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: ${{ secrets.TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true

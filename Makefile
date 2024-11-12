@@ -13,3 +13,6 @@ clean:
 
 pytest:
 	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov=gendiff --cov-report lcov
