@@ -1,28 +1,36 @@
 def stylish(diff, depth=0):
     indent = "    " * depth
     lines = ["{"]
+    status_handlers = {
+        "added": lambda key,
+        change: f"{indent}  + {key}: {format_value(change['value'], depth + 1)}",
+        "removed": lambda key,
+        change: f"{indent}  - {key}: {format_value(change['value'], depth + 1)}",
+        "unchanged": lambda key,
+        change: f"{indent}    {key}: {format_value(change['value'], depth + 1)}",
+        "changed": lambda key, change: [
+            f"{indent}  - {key}: {
+                format_value(
+                    change['old_value'],
+                    depth + 1)}",
+            f"{indent}  + {key}: {
+                format_value(
+                    change['new_value'],
+                    depth + 1)}",
+        ],
+        "nested": lambda key,
+        change: f"{indent}    {key}: {stylish(change['value'], depth + 1)}",
+    }
+
     for key, change in diff.items():
-        if change["status"] == "added":
-            lines.append(
-                f"{indent}  + {key}: {format_value(change['value'], depth + 1)}"
-            )
-        elif change["status"] == "removed":
-            lines.append(
-                f"{indent}  - {key}: {format_value(change['value'], depth + 1)}"
-            )
-        elif change["status"] == "unchanged":
-            lines.append(
-                f"{indent}    {key}: {format_value(change['value'], depth + 1)}"
-            )
-        elif change["status"] == "changed":
-            lines.append(
-                f"{indent}  - {key}: {format_value(change['old_value'], depth + 1)}"
-            )
-            lines.append(
-                f"{indent}  + {key}: {format_value(change['new_value'], depth + 1)}"
-            )
-        elif change["status"] == "nested":
-            lines.append(f"{indent}    {key}: {stylish(change['value'], depth + 1)}")
+        status = change["status"]
+        if status in status_handlers:
+            result = status_handlers[status](key, change)
+            if isinstance(result, list):
+                lines.extend(result)
+            else:
+                lines.append(result)
+
     lines.append(f"{'    ' * depth}}}")
     return "\n".join(lines)
 
