@@ -20,6 +20,7 @@ jobs:
         run: |
           pip install poetry
           poetry install
+          poetry install pytest
 
       - name: Run linter
         run:
@@ -40,7 +41,7 @@ jobs:
       - name: Run Tests and Upload Coverage
         run: |
           ./cc-test-reporter before-build
-          pytest --cov=gendiff --cov-report=xml
+          poetry run pytest --cov=gendiff --cov-report=xml
           ./cc-test-reporter after-build --exit-code $? --coverage-input-type xml
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
