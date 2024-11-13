@@ -1,10 +1,10 @@
 from gendiff.cli import pars_args
-from gendiff.gendiff import gendiff
+from gendiff.gendiff import generate_diff
 
 
 def main():
     args = pars_args()
-    diff = gendiff(args.first_file, args.second_file, args.format)
+    diff = generate_diff(args.first_file, args.second_file, args.format)
     print(diff)
 
 
