@@ -49,4 +49,6 @@ from tests.fixtures.read_fixtures import read_expected_output
 )
 def test_gendiff(file1, file2, expected_output_file, format_name):
     expected_output = read_expected_output(expected_output_file)
-    assert generate_diff(file1, file2, format_name=format_name) == expected_output
+    assert generate_diff(
+        file1, file2, format_name=format_name
+    ) == expected_output

@@ -24,7 +24,7 @@ def plain(diff, path=""):
 
 def format_value(value):
     if isinstance(value, dict):
-        return f"[complex value]"
+        return "[complex value]"
     elif isinstance(value, bool):
         return "true" if value else "false"
     elif value is None:

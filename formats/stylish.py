@@ -2,24 +2,24 @@ def stylish(diff, depth=0):
     indent = "    " * depth
     lines = ["{"]
     status_handlers = {
-        "added": lambda key,
-        change: f"{indent}  + {key}: {format_value(change['value'], depth + 1)}",
-        "removed": lambda key,
-        change: f"{indent}  - {key}: {format_value(change['value'], depth + 1)}",
-        "unchanged": lambda key,
-        change: f"{indent}    {key}: {format_value(change['value'], depth + 1)}",
+        "added": lambda key, change: (
+            f"{indent}  + {key}: {format_value(change['value'], depth + 1)}"
+        ),
+        "removed": lambda key, change: (
+            f"{indent}  - {key}: {format_value(change['value'], depth + 1)}"
+        ),
+        "unchanged": lambda key, change: (
+            f"{indent}    {key}: {format_value(change['value'], depth + 1)}"
+        ),
         "changed": lambda key, change: [
-            f"{indent}  - {key}: {
-                format_value(
-                    change['old_value'],
-                    depth + 1)}",
-            f"{indent}  + {key}: {
-                format_value(
-                    change['new_value'],
-                    depth + 1)}",
+            f"{indent}  - {key}: "
+            f"{format_value(change['old_value'], depth + 1)}",
+            f"{indent}  + {key}: "
+            f"{format_value(change['new_value'], depth + 1)}",
         ],
-        "nested": lambda key,
-        change: f"{indent}    {key}: {stylish(change['value'], depth + 1)}",
+        "nested": lambda key, change: (
+            f"{indent}    {key}: {stylish(change['value'], depth + 1)}"
+        ),
     }
 
     for key, change in diff.items():
