@@ -1,24 +1,23 @@
 def plain(diff, path=""):
     lines = []
+    actions = {
+        'added': lambda current_path, change:
+            f"Property '{current_path}' was added with value: "
+            f"{format_value(change['value'])}",
+        'removed': lambda current_path, change:
+            f"Property '{current_path}' was removed",
+        'changed': lambda current_path, change:
+            f"Property '{current_path}' was updated. "
+            f"From {format_value(change['old_value'])} to "
+            f"{format_value(change['new_value'])}",
+        'nested': lambda current_path, change:
+            plain(change["value"], current_path)
+    }
     for key, change in diff.items():
         current_path = f"{path}.{key}" if path else key
         status = change["status"]
-        if status == "added":
-            lines.append(
-                f"Property '{current_path}' was added with value: "
-                f"{format_value(change['value'])}"
-            )
-        elif status == "removed":
-            lines.append(f"Property '{current_path}' was removed")
-        elif status == "changed":
-            lines.append(
-                f"Property '{current_path}' was updated. "
-                f"From {format_value(change['old_value'])} to "
-                f"{format_value(change['new_value'])}"
-            )
-        elif status == "nested":
-            lines.append(plain(change["value"], current_path))
-
+        if status in actions:
+            lines.append(actions[status](current_path, change))
     return "\n".join(lines)
 
 
