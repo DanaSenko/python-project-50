@@ -25,7 +25,7 @@ Possible values: 'stylish', 'plain', 'json'.
 
 **You can install this packege with:**
 ```bash
-pip install git+https://github.com/<username>/<project-name>
+pip install git+https://github.com/DanaSenko/python-project-50.git
 ```
 
 
@@ -34,3 +34,8 @@ pip install git+https://github.com/<username>/<project-name>
 [![Python CI](https://github.com/DanaSenko/python-project-50/actions/workflows/main.yml/badge.svg)](https://github.com/DanaSenko/python-project-50/actions/workflows/main.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/424238d088ff8cc6de4b/maintainability)](https://codeclimate.com/github/DanaSenko/python-project-50/maintainability)                                   
 [![Test Coverage](https://api.codeclimate.com/v1/badges/424238d088ff8cc6de4b/test_coverage)](https://codeclimate.com/github/DanaSenko/python-project-50/test_coverage)
+
+
+### HOW YOU CAN USE IT
+
+[![asciicast](https://asciinema.org/a/84GATtiHRlxyjxNkjcfmcTjbh.svg)](https://asciinema.org/a/84GATtiHRlxyjxNkjcfmcTjbh) 
