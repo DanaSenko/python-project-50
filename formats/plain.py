@@ -1,3 +1,15 @@
+def format_value(value):
+    if isinstance(value, dict):
+        return "[complex value]"
+    elif isinstance(value, bool):
+        return "true" if value else "false"
+    elif value is None:
+        return "null"
+    elif isinstance(value, str):
+        return f"'{value}'"
+    return str(value)
+
+
 def plain(diff, path=""):
     lines = []
     actions = {
@@ -19,15 +31,3 @@ def plain(diff, path=""):
         if status in actions:
             lines.append(actions[status](current_path, change))
     return "\n".join(lines)
-
-
-def format_value(value):
-    if isinstance(value, dict):
-        return "[complex value]"
-    elif isinstance(value, bool):
-        return "true" if value else "false"
-    elif value is None:
-        return "null"
-    elif isinstance(value, str):
-        return f"'{value}'"
-    return str(value)

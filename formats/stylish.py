@@ -1,3 +1,18 @@
+def format_value(value, depth):
+    if isinstance(value, dict):
+        lines = ["{"]
+        indent = "    " * (depth + 1)
+        for k, v in value.items():
+            lines.append(f"{indent}{k}: {format_value(v, depth + 1)}")
+        lines.append(f"{'    ' * depth}}}")
+        return "\n".join(lines)
+    elif isinstance(value, bool):
+        return "true" if value else "false"
+    elif value is None:
+        return "null"
+    return str(value)
+
+
 def stylish(diff, depth=0):
     indent = "    " * depth
     lines = ["{"]
@@ -33,18 +48,3 @@ def stylish(diff, depth=0):
 
     lines.append(f"{'    ' * depth}}}")
     return "\n".join(lines)
-
-
-def format_value(value, depth):
-    if isinstance(value, dict):
-        lines = ["{"]
-        indent = "    " * (depth + 1)
-        for k, v in value.items():
-            lines.append(f"{indent}{k}: {format_value(v, depth + 1)}")
-        lines.append(f"{'    ' * depth}}}")
-        return "\n".join(lines)
-    elif isinstance(value, bool):
-        return "true" if value else "false"
-    elif value is None:
-        return "null"
-    return str(value)
