@@ -23,6 +23,10 @@ format - optional parameter, default value is 'stylish'.
 Possible values: 'stylish', 'plain', 'json'.
 
 
+**You can install this packege with:**
+```bash
+pip install git+https://github.com/<username>/<project-name>
+```
 
 
 ### Hexlet tests and linter status:

@@ -78,8 +78,8 @@ DA:17,1
 DA:18,0
 LF:16
 LH:15
-FN:8,18,gendiff
-FNDA:1,gendiff
+FN:8,18,generate_diff
+FNDA:1,generate_diff
 FNF:1
 FNH:1
 end_of_record
