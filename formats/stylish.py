@@ -1,11 +1,15 @@
+INDENT_SIZE = 4
+REPLACER = " "
+
+
+def get_indent(depth):
+    """Возвращает отступ для текущей глубины."""
+    return REPLACER * INDENT_SIZE * depth
+
+
 def format_value(value, depth):
     if isinstance(value, dict):
-        lines = ["{"]
-        indent = "    " * (depth + 1)
-        for k, v in value.items():
-            lines.append(f"{indent}{k}: {format_value(v, depth + 1)}")
-        lines.append(f"{'    ' * depth}}}")
-        return "\n".join(lines)
+        return format_dict(value, depth)
     elif isinstance(value, bool):
         return "true" if value else "false"
     elif value is None:
@@ -13,8 +17,18 @@ def format_value(value, depth):
     return str(value)
 
 
+def format_dict(value, depth):
+    lines = ["{"]
+    inner_indent = get_indent(depth + 1)
+    for k, v in value.items():
+        lines.append(f"{inner_indent}{k}: {format_value(v, depth + 1)}")
+    close_indent = get_indent(depth)
+    lines.append(f"{close_indent}}}")
+    return '\n'.join(lines)
+
+
 def stylish(diff, depth=0):
-    indent = "    " * depth
+    indent = get_indent(depth)
     lines = ["{"]
     status_handlers = {
         "added": lambda key, change: (
@@ -46,5 +60,5 @@ def stylish(diff, depth=0):
             else:
                 lines.append(result)
 
-    lines.append(f"{'    ' * depth}}}")
+    lines.append(f"{get_indent(depth)}}}")
     return "\n".join(lines)
