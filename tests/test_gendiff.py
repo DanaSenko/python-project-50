@@ -1,48 +1,51 @@
+from pathlib import Path
 import pytest
 from gendiff import generate_diff
 from tests.fixtures.read_fixtures import read_expected_output
 
+
+FIXTURES_DIR = Path(__file__).parent / "fixtures"
 
 @pytest.mark.parametrize(
     "file1, file2, expected_output_file, format_name",
     [
         # Тесты для формата stylish
         (
-            "tests/fixtures/file1.json",
-            "tests/fixtures/file2.json",
-            "tests/fixtures/expected_stylish_output.txt",
+            FIXTURES_DIR / "file1.json" ,
+            FIXTURES_DIR / "file2.json",
+            FIXTURES_DIR / "expected_stylish_output.txt",
             "stylish",
         ),
         (
-            "tests/fixtures/file1.yaml",
-            "tests/fixtures/file2.yaml",
-            "tests/fixtures/expected_stylish_output.txt",
+            FIXTURES_DIR / "file1.yaml",
+            FIXTURES_DIR / "file2.yaml",
+            FIXTURES_DIR / "expected_stylish_output.txt",
             "stylish",
         ),
         # Тесты для формата plain
         (
-            "tests/fixtures/file1.json",
-            "tests/fixtures/file2.json",
-            "tests/fixtures/expected_plain_output.txt",
+            FIXTURES_DIR / "file1.json",
+            FIXTURES_DIR / "file2.json",
+            FIXTURES_DIR / "expected_plain_output.txt",
             "plain",
         ),
         (
-            "tests/fixtures/file1.yaml",
-            "tests/fixtures/file2.yaml",
-            "tests/fixtures/expected_plain_output.txt",
+            FIXTURES_DIR / "file1.yaml",
+            FIXTURES_DIR / "file2.yaml",
+            FIXTURES_DIR / "expected_plain_output.txt",
             "plain",
         ),
         # Тесты для формата json
         (
-            "tests/fixtures/file1.json",
-            "tests/fixtures/file2.json",
-            "tests/fixtures/expected_json_output.txt",
+            FIXTURES_DIR / "file1.json",
+            FIXTURES_DIR / "file2.json",
+            FIXTURES_DIR / "expected_json_output.txt",
             "json",
         ),
         (
-            "tests/fixtures/file1.yaml",
-            "tests/fixtures/file2.yaml",
-            "tests/fixtures/expected_json_output.txt",
+            FIXTURES_DIR / "file1.yaml",
+            FIXTURES_DIR / "file2.yaml",
+            FIXTURES_DIR / "expected_json_output.txt",
             "json",
         ),
     ],
