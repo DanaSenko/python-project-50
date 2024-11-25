@@ -6,12 +6,13 @@ from tests.fixtures.read_fixtures import read_expected_output
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
 
+
 @pytest.mark.parametrize(
     "file1, file2, expected_output_file, format_name",
     [
         # Тесты для формата stylish
         (
-            FIXTURES_DIR / "file1.json" ,
+            FIXTURES_DIR / "file1.json",
             FIXTURES_DIR / "file2.json",
             FIXTURES_DIR / "expected_stylish_output.txt",
             "stylish",
